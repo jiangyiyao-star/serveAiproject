@@ -1,7 +1,9 @@
 # SpringBoot 项目初始模板
 
 
-[toc]
+基于 Java SpringBoot 的项目初始模板，整合了常用框架和主流业务的示例代码。
+
+这是修改之后的版本
 
 ## 模板特点
 
@@ -166,10 +168,12 @@ PUT post_v1
 
 ```
 // 指定生成参数
-String packageName = "com.jiangyiayo.springbootinit";
+String packageName = "com.yupi.springbootinit";
 String dataName = "用户评论";
 String dataKey = "userComment";
 String upperDataKey = "UserComment";
 ```
 
 生成代码后，可以移动到实际项目中，并且按照 `// todo` 注释的提示来针对自己的业务需求进行修改。
+
+
