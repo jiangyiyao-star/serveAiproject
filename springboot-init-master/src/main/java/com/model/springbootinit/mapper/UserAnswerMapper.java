@@ -1,7 +1,7 @@
 package com.model.springbootinit.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import generator.domain.UserAnswer;
+import com.model.springbootinit.model.entity.UserAnswer;
 
 /**
 * @author 86175
