@@ -10,10 +10,8 @@ import com.model.springbootinit.exception.ThrowUtils;
 import com.model.springbootinit.mapper.AppMapper;
 import com.model.springbootinit.model.dto.app.AppQueryRequest;
 import com.model.springbootinit.model.entity.App;
-import com.model.springbootinit.model.entity.AppFavour;
-import com.model.springbootinit.model.entity.AppThumb;
-import com.model.springbootinit.model.entity.AppFavour;
 import com.model.springbootinit.model.entity.User;
+import com.model.springbootinit.model.enums.ReviewStatusEnum;
 import com.model.springbootinit.model.vo.AppVO;
 import com.model.springbootinit.model.vo.UserVO;
 import com.model.springbootinit.service.AppService;
@@ -26,10 +24,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -52,18 +47,29 @@ public class AppServiceImpl extends ServiceImpl<AppMapper, App> implements AppSe
     @Override
     public void validApp(App app, boolean add) {
         ThrowUtils.throwIf(app == null, ErrorCode.PARAMS_ERROR);
-        // todo 从对象中取值
-        String title = app.getTitle();
+        //  从对象中取值
+        String appName = app.getAppName();  //名称
+        String appDesc = app.getAppDesc();  //描述
+        Integer appType = app.getAppType();  //类型
+        Integer scoringStrategy = app.getScoringStrategy();  //评分策略
+        Integer reviewStatus = app.getReviewStatus();
+
+
         // 创建数据时，参数不能为空
         if (add) {
-            // todo 补充校验规则
-            ThrowUtils.throwIf(StringUtils.isBlank(title), ErrorCode.PARAMS_ERROR);
+            //  补充校验规则
+            ThrowUtils.throwIf(StringUtils.isBlank(appName), ErrorCode.PARAMS_ERROR,"标题不能为空");
+            ThrowUtils.throwIf(StringUtils.isBlank(appDesc), ErrorCode.PARAMS_ERROR,"描述不能为空");
+            ReviewStatusEnum enumByValue = ReviewStatusEnum.getEnumByValue(reviewStatus);
+            ThrowUtils.throwIf(enumByValue == null, ErrorCode.PARAMS_ERROR,"类型不能为空");
+            ThrowUtils.throwIf(appType==null, ErrorCode.PARAMS_ERROR,"描述不能为空");
         }
         // 修改数据时，有参数则校验
         // todo 补充校验规则
-        if (StringUtils.isNotBlank(title)) {
-            ThrowUtils.throwIf(title.length() > 80, ErrorCode.PARAMS_ERROR, "标题过长");
+        if (StringUtils.isNotBlank(appName)) {
+            ThrowUtils.throwIf(appName.length() > 80, ErrorCode.PARAMS_ERROR, "标题过长");
         }
+
     }
 
     /**

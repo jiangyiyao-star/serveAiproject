@@ -1,4 +1,4 @@
-package com.yupi.yudada.model.enums;
+package com.model.springbootinit.model.enums;
 
 import cn.hutool.core.util.ObjectUtil;
 
