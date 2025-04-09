@@ -13,19 +13,14 @@ import java.util.List;
 public class QuestionAddRequest implements Serializable {
 
     /**
-     * 标题
+     * 题目内容（json格式）
      */
-    private String title;
+    private List<QuestionContentDTO> questionContent;
 
     /**
-     * 内容
+     * 应用 id
      */
-    private String content;
-
-    /**
-     * 标签列表
-     */
-    private List<String> tags;
+    private Long appId;
 
     private static final long serialVersionUID = 1L;
 }

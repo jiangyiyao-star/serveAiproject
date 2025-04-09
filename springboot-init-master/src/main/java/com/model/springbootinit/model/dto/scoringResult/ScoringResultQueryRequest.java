@@ -1,24 +1,23 @@
-package com.model.springbootinit.model.entity;
+package com.model.springbootinit.model.dto.scoringResult;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.util.Date;
+import com.model.springbootinit.common.PageRequest;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import java.io.Serializable;
+import java.util.List;
 
 /**
- * 评分结果
- * @TableName scoring_result
+ * 查询问题请求
+ *
  */
-@TableName(value ="scoring_result")
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class ScoringResult implements Serializable {
+public class ScoringResultQueryRequest extends PageRequest implements Serializable {
+
     /**
      * id
      */
-    @TableId(type = IdType.ASSIGN_ID)
     private Long id;
 
     /**
@@ -57,20 +56,14 @@ public class ScoringResult implements Serializable {
     private Long userId;
 
     /**
-     * 创建时间
+     * id
      */
-    private Date createTime;
+    private Long notId;
 
     /**
-     * 更新时间
+     * 搜索词
      */
-    private Date updateTime;
+    private String searchText;
 
-    /**
-     * 是否删除
-     */
-    private Integer isDelete;
-
-    @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }

@@ -1,6 +1,9 @@
 package com.model.springbootinit.model.vo;
 
 import cn.hutool.json.JSONUtil;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.model.springbootinit.model.dto.question.QuestionContentDTO;
 import com.model.springbootinit.model.entity.Question;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
@@ -22,14 +25,14 @@ public class QuestionVO implements Serializable {
     private Long id;
 
     /**
-     * 标题
+     * 题目内容（json格式）
      */
-    private String title;
+    private QuestionContentDTO questionContent;
 
     /**
-     * 内容
+     * 应用 id
      */
-    private String content;
+    private Long appId;
 
     /**
      * 创建用户 id
@@ -45,11 +48,6 @@ public class QuestionVO implements Serializable {
      * 更新时间
      */
     private Date updateTime;
-
-    /**
-     * 标签列表
-     */
-    private List<String> tagList;
 
     /**
      * 创建用户信息
@@ -68,8 +66,8 @@ public class QuestionVO implements Serializable {
         }
         Question question = new Question();
         BeanUtils.copyProperties(questionVO, question);
-        List<String> tagList = questionVO.getTagList();
-        question.setTags(JSONUtil.toJsonStr(tagList));
+        QuestionContentDTO questionContent = questionVO.getQuestionContent();
+        question.setQuestionContent(JSONUtil.toJsonStr(questionContent));
         return question;
     }
 
@@ -85,7 +83,7 @@ public class QuestionVO implements Serializable {
         }
         QuestionVO questionVO = new QuestionVO();
         BeanUtils.copyProperties(question, questionVO);
-        questionVO.setTagList(JSONUtil.toList(question.getTags(), String.class));
+        questionVO.setQuestionContent(JSONUtil.toBean(question.getQuestionContent(), QuestionContentDTO.class));
         return questionVO;
     }
 }

@@ -12,6 +12,7 @@ import com.model.springbootinit.model.dto.app.AppQueryRequest;
 import com.model.springbootinit.model.entity.App;
 import com.model.springbootinit.model.entity.AppFavour;
 import com.model.springbootinit.model.entity.AppThumb;
+import com.model.springbootinit.model.entity.AppFavour;
 import com.model.springbootinit.model.entity.User;
 import com.model.springbootinit.model.vo.AppVO;
 import com.model.springbootinit.model.vo.UserVO;
