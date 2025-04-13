@@ -27,7 +27,7 @@ public class QuestionVO implements Serializable {
     /**
      * 题目内容（json格式）
      */
-    private QuestionContentDTO questionContent;
+    private List<QuestionContentDTO> questionContent;
 
     /**
      * 应用 id
@@ -65,9 +65,9 @@ public class QuestionVO implements Serializable {
             return null;
         }
         Question question = new Question();
+        List<QuestionContentDTO> questionContent1 = questionVO.getQuestionContent();
         BeanUtils.copyProperties(questionVO, question);
-        QuestionContentDTO questionContent = questionVO.getQuestionContent();
-        question.setQuestionContent(JSONUtil.toJsonStr(questionContent));
+        question.setQuestionContent(JSONUtil.toJsonStr(questionContent1));
         return question;
     }
 
@@ -83,7 +83,11 @@ public class QuestionVO implements Serializable {
         }
         QuestionVO questionVO = new QuestionVO();
         BeanUtils.copyProperties(question, questionVO);
-        questionVO.setQuestionContent(JSONUtil.toBean(question.getQuestionContent(), QuestionContentDTO.class));
+        String questionContent1 = question.getQuestionContent();
+        if(questionContent1 !=null){
+            questionVO.setQuestionContent(JSONUtil.toList(question.getQuestionContent(), QuestionContentDTO.class));
+        }
+
         return questionVO;
     }
 }
