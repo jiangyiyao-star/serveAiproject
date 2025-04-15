@@ -21,6 +21,7 @@ import java.util.Map;
 /**
  * 自定义评分_测评类_策略实现类
  */
+@ScoringStrategyConfig(appType = 0, scoringStrategy = 0)
 public class CustomTestScoringStrategy implements ScoringStrategy{
 
     @Resource
@@ -40,8 +41,8 @@ public class CustomTestScoringStrategy implements ScoringStrategy{
     @Override
     public UserAnswer doScore(List<String> choices, App app) throws Exception {
 
-        Long appId = app.getId();
         // 1. 根据id查询题目和题目结果信息
+        Long appId = app.getId();
 
         //使用lambda表达式查询题目信息   在question表里面查询 appId=app.getId() 的题目信息
         Question question = questionService.getOne( //返回单个对象
